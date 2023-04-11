@@ -5,4 +5,3 @@ node_modules/
 demo/lichess-pgn-viewer.js
 demo/lichess-pgn-viewer.css
 dist/
-package-lock.json
