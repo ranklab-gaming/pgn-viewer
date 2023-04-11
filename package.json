@@ -1,10 +1,8 @@
 {
-  "name": "lichess-pgn-viewer",
+  "name": "@ranklab-gaming/lichess-pgn-viewer",
   "license": "GPL-3.0-or-later",
   "version": "1.5.5",
-  "repository": "github:lichess-org/pgn-viewer",
-  "author": "Thibault Duplessis <contact@lichess.org>",
-  "funding": "https://lichess.org/patron",
+  "repository": "github:ranklab-gaming/pgn-viewer",
   "keywords": [
     "chess",
     "lichess",
