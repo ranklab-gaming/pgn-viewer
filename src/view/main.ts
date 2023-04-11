@@ -85,5 +85,14 @@ export const makeConfig = (ctrl: Ctrl, rootEl: HTMLElement): CgConfig => ({
   },
   disableContextMenu: ctrl.opts.drawArrows,
   ...(ctrl.opts.chessground || {}),
+  movable: {
+    free: false,
+  },
+  draggable: {
+    enabled: false,
+  },
+  selectable: {
+    enabled: false,
+  },
   ...ctrl.cgState(),
 });
