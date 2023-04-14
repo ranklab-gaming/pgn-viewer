@@ -1,7 +1,7 @@
 import { Api as CgApi } from 'chessground/api';
 import { makeSquare, opposite } from 'chessops';
 import translator from './translation';
-import { GoTo, InitialOrMove, Opts, Translate } from './interfaces';
+import { GoTo, InitialOrMove, MoveData, Opts, Translate } from './interfaces';
 import { Config as CgConfig } from 'chessground/config';
 import { uciToMove } from 'chessground/util';
 import { Path } from './path';
@@ -17,13 +17,13 @@ export default class Ctrl {
   flipped = false;
   pane = 'board';
   autoScrollRequested = false;
-  onPathChange?: (path: Path, move: InitialOrMove) => void;
+  onMove?: (move: MoveData | undefined) => void;
 
   constructor(readonly opts: Opts, readonly redraw: () => void) {
     this.game = makeGame(opts.pgn, opts.lichess);
     this.translate = translator(opts.translate);
     this.path = this.game.pathAtMainlinePly(opts.initialPly);
-    this.onPathChange = opts.events?.onPathChange;
+    this.onMove = opts.events?.onMove;
   }
 
   curNode = (): AnyNode => this.game.nodeAt(this.path) || this.game.moves;
@@ -50,7 +50,8 @@ export default class Ctrl {
     this.redrawGround();
     this.redraw();
     if (focus) this.focus();
-    this.onPathChange?.(path, this.curData());
+    const data = this.curData()
+    this.onMove?.(isMoveData(data) ? data : undefined);
   };
 
   focus = () => this.div?.focus();
