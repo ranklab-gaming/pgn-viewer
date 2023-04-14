@@ -96,4 +96,7 @@ export interface Opts {
   lichess: Lichess;
   classes?: string;
   translate?: Translate;
+  events?: {
+    onPathChange?: (path: Path) => void;
+  }
 }

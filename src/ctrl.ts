@@ -17,11 +17,13 @@ export default class Ctrl {
   flipped = false;
   pane = 'board';
   autoScrollRequested = false;
+  onPathChange?: (path: Path) => void;
 
   constructor(readonly opts: Opts, readonly redraw: () => void) {
     this.game = makeGame(opts.pgn, opts.lichess);
     this.translate = translator(opts.translate);
     this.path = this.game.pathAtMainlinePly(opts.initialPly);
+    this.onPathChange = opts.events?.onPathChange;
   }
 
   curNode = (): AnyNode => this.game.nodeAt(this.path) || this.game.moves;
@@ -48,6 +50,7 @@ export default class Ctrl {
     this.redrawGround();
     this.redraw();
     if (focus) this.focus();
+    this.onPathChange?.(path);
   };
 
   focus = () => this.div?.focus();
