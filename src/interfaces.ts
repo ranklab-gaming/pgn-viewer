@@ -97,6 +97,6 @@ export interface Opts {
   classes?: string;
   translate?: Translate;
   events?: {
-    onPathChange?: (path: Path) => void;
+    onPathChange?: (path: Path, move: CgConfig['lastMove']) => void;
   }
 }
