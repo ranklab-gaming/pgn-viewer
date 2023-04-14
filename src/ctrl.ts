@@ -17,7 +17,7 @@ export default class Ctrl {
   flipped = false;
   pane = 'board';
   autoScrollRequested = false;
-  onPathChange?: (path: Path) => void;
+  onPathChange?: (path: Path, move: CgConfig['lastMove']) => void;
 
   constructor(readonly opts: Opts, readonly redraw: () => void) {
     this.game = makeGame(opts.pgn, opts.lichess);
@@ -50,7 +50,7 @@ export default class Ctrl {
     this.redrawGround();
     this.redraw();
     if (focus) this.focus();
-    this.onPathChange?.(path);
+    this.onPathChange?.(path, this.cgState().lastMove);
   };
 
   focus = () => this.div?.focus();
