@@ -24,6 +24,12 @@ export default class Ctrl {
     this.translate = translator(opts.translate);
     this.path = this.game.pathAtMainlinePly(opts.initialPly);
     this.onMove = opts.events?.onMove;
+    this.triggerOnMove();
+  }
+
+  triggerOnMove() {
+    const data = this.curData()
+    this.onMove?.(isMoveData(data) ? data : undefined);
   }
 
   curNode = (): AnyNode => this.game.nodeAt(this.path) || this.game.moves;
@@ -50,8 +56,7 @@ export default class Ctrl {
     this.redrawGround();
     this.redraw();
     if (focus) this.focus();
-    const data = this.curData()
-    this.onMove?.(isMoveData(data) ? data : undefined);
+    this.triggerOnMove();
   };
 
   focus = () => this.div?.focus();
