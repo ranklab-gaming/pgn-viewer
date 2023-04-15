@@ -1,7 +1,7 @@
 {
   "name": "@ranklab-gaming/lichess-pgn-viewer",
   "license": "GPL-3.0-or-later",
-  "version": "1.5.12",
+  "version": "1.5.13",
   "repository": "github:ranklab-gaming/pgn-viewer",
   "keywords": [
     "chess",

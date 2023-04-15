@@ -10,6 +10,7 @@ export default function start(element: HTMLElement, cfg: Partial<Opts>): Ctrl {
   const opts = config(element, cfg);
 
   const ctrl = new Ctrl(opts, redraw);
+  ctrl.triggerOnMove();
 
   const blueprint = view(ctrl);
   element.innerHTML = '';

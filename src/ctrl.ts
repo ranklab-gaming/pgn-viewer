@@ -24,7 +24,6 @@ export default class Ctrl {
     this.translate = translator(opts.translate);
     this.path = this.game.pathAtMainlinePly(opts.initialPly);
     this.onMove = opts.events?.onMove;
-    this.triggerOnMove();
   }
 
   triggerOnMove() {
