@@ -7,6 +7,21 @@ import { Path } from '../path';
 export const renderMoves = (ctrl: Ctrl) =>
   h(
     'div.lpv__side',
+    {
+      hook: {
+        insert: vnode => {
+          const el = vnode.elm as HTMLElement;
+          const ro = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              ctrl.onSideResize?.({ width: entry.contentRect.width, height: entry.contentRect.height });
+            }
+          });
+          ro.observe(el);
+          const {width, height} = el.getBoundingClientRect();
+          ctrl.onSideResize?.({ width, height });
+        }
+      }
+    },
     h(
       'div.lpv__moves',
       {

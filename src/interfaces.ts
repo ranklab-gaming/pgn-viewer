@@ -98,5 +98,6 @@ export interface Opts {
   translate?: Translate;
   events?: {
     onMove?: (move: MoveData | undefined) => void;
+    onSideResize?: ({width, height}: {width: number, height: number}) => void;
   }
 }

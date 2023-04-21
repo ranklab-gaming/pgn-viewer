@@ -18,12 +18,14 @@ export default class Ctrl {
   pane = 'board';
   autoScrollRequested = false;
   onMove?: (move: MoveData | undefined) => void;
+  onSideResize?: ({width, height}: {width: number, height: number}) => void;
 
   constructor(readonly opts: Opts, readonly redraw: () => void) {
     this.game = makeGame(opts.pgn, opts.lichess);
     this.translate = translator(opts.translate);
     this.path = this.game.pathAtMainlinePly(opts.initialPly);
     this.onMove = opts.events?.onMove;
+    this.onSideResize = opts.events?.onSideResize;
   }
 
   triggerOnMove() {
